@@ -1,6 +1,16 @@
 import chainlit as cl
 import openai
 import requests
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Fetch API keys from environment variables
+openai_api_key = os.getenv('OPENAI_API_KEY')
+rapidapi_key = os.getenv('RAPIDAPI_KEY')
+rapidapi_host = os.getenv('RAPIDAPI_HOST')
 
 settings = {
     "model": "gpt-3.5-turbo",
@@ -11,8 +21,7 @@ settings = {
     "presence_penalty": 0,
 }
 
-rapidapi_key = "40f14362a4mshf4b871f3b27fa62p1b293djsn07cfceb23c62"  # Replace with your RapidAPI key
-rapidapi_host = "https://linkedin-data-api.p.rapidapi.com/search-employees"  # Replace with the host from your RapidAPI service
+openai.api_key = openai_api_key
 
 @cl.set_starters
 async def set_starters():
